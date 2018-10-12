@@ -12,14 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('region');
 });
 
-Route::get('regions', 'RegionController@index');
-Route::get('/serverSide', [
-	'as' => 'serverSide',
-	'uses' => function () {
-		$regions = App\Region::get(['_id', 'name', 'number']);
-		return Datatables::collection(App\Region::get(['_id', 'name', 'number']))->make();
-	},
+Route::get('pengumuman', 'PengumumanController@index');
+
+Route::get('get-data', [
+	'as' => 'get-data',
+	'uses' => 'PengumumanController@getData',
 ]);

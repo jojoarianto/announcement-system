@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Print Region Table</title>
+        <title>Pengumuman</title>
         <meta charset="UTF-8">
-        <meta name=description content="">
+        <meta name=description content="Pengumuman">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap CSS -->
         <script src="//code.jquery.com/jquery-1.12.3.js"></script>
@@ -18,13 +18,17 @@
     </head>
     <body>
         <div class="container">
-            <h2 style="text-align: center;">Table of Region</h2>
+            <h2 style="text-align: center;">Pengumuman Peserta Lolos</h2>
             <table class="table table-bordered table-condensed table-striped datatable mdl-data-table dataTable" id="table">
                 <thead>
                     <tr> 
-                        <th class="text-center">ID</th>
-                        <th class="text-center">Region Name</th>
-                        <th class="text-center">Region Code</th>
+                        <th class="text-center">Nomer</th>
+                        <th class="text-center">Nama Peserta</th>
+                        <th class="text-center">Nomer Peserta</th>
+                        <th class="text-center">Sekolah</th>
+                        <th class="text-center">Nilai</th>
+                        <th class="text-center">Region</th>
+                        <th class="text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,13 +41,14 @@
         <script>
           $(document).ready(function() {
             $('#table').DataTable({
+                ordering: false,
+                pageLength: 25,
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('serverSide') }}",
-                lengthMenu: [5, 25, 100],
+                ajax: "{{ route('get-data') }}",
                 columnDeft: [{
-                    targets: [0,1,2],
-                    className: "mdl-data-table__cell--non-numeric"
+                    targets: [0,1,2,3,4,5,6],
+                    className: "mdl-data-table"
                 }],
             });
 
