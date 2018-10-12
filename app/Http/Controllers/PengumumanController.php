@@ -17,7 +17,7 @@ class PengumumanController extends Controller
      */
     public function getData()
     {
-    	$file_n = storage_path('app/data.csv');
+        $file_n =  base_path() . '/public/csv/data.csv';
 
     	$file = fopen($file_n, "r");
     	$users = new Collection;
