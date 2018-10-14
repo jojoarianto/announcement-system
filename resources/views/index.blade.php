@@ -32,7 +32,7 @@
     <header class="navbar navbar-inverse navbar-fixed-top" id="nav" role="banner">
         <div class="container">
             <div class="navbar-header">
-                <a href="#" class="navbar-brand">Pengumuman</a>
+                <a href="#" class="navbar-brand">Pengumuman {{ $title }}</a>
             </div>
         </div>
     </header>
@@ -43,11 +43,11 @@
                 <thead class="thead-dark">
                     <tr> 
                         <th>No</th>
-                        <th>Nama Peserta</th>
                         <th>Nomer Peserta</th>
+                        <th>Nama Peserta</th>
                         <th>Sekolah</th>
-                        <th>Nilai</th>
                         <th>Region</th>
+                        <th>Nilai</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -63,15 +63,17 @@
     <script>
       $(document).ready(function() {
         $('#table').DataTable({
-            ordering: false,
             pageLength: 25,
+            order: [[ 1, "asc" ]],
             processing: true,
             serverSide: true,
             ajax: "{{ route('get-data') }}",
-            columnDeft: [{
-                targets: [0,1,2,3,4,5,6],
+            columnDeft: [
+            {
+                targets: [1,2,3,4,5,6],
                 className: "mdl-data-table"
-            }],
+            },
+            ],
         });
 
     } );

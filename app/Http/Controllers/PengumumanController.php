@@ -17,7 +17,8 @@ class PengumumanController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $data['title'] = "OMVN 2018 Cabang SD";
+        return view('index', $data);
     }
 
     /**
@@ -30,27 +31,47 @@ class PengumumanController extends Controller
 
     	$file = fopen($file_n, "r");
     	$users = new Collection;
+        $ct = 1;
     	while ( ($data = fgetcsv($file, 2000, ";")) !==FALSE ){
 
     		/**
-    		 * 	Nomer 0
-            	Nama Peserta 1
-            	Nomer Peserta 2
-            	Sekolah 3
-            	Region 4
-            	Nilai 5
-            	Status 6
+            No
+            Nomer Peserta
+            Nama Peserta
+            Sekolah
+            Region
+            Nilai
+            Status
     		 */
+            
+            $status = "TIDAK LOLOS";
+
+            switch ($data[6]) {
+                case 1:
+                    $status = "LOLOS NASIONAL";
+                    break;
+                case 2:
+                    $status = "LOLOS NASIONAL & JUARA REGION";
+                    break;
+                case 3:
+                    $status = "JUARA REGION";
+                    break;
+                default:
+                   $status = "TIDAK LOLOS";
+            };
 
 		    $users->push([
-		    	str_replace(" ", "", trim($data[0])),
+		    	$ct,
 		    	$data[1],
 		    	$data[2],
 		    	$data[3],
 		    	$data[4],
 		    	$data[5],
-		    	($data[6] == 1 ? "LOLOS" : "TIDAK LOLOS"),
+		    	// ($data[6] == 1 ? "LOLOS" : "TIDAK LOLOS"),
+                $status,
 		    ]);
+
+            $ct++;
 		    
     	}
     	fclose($file);
