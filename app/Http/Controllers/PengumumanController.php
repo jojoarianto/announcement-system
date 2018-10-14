@@ -12,6 +12,15 @@ class PengumumanController extends Controller
 {
 
     /**
+     * [index description]
+     * @return [type] [description]
+     */
+    public function index()
+    {
+        return view('index');
+    }
+
+    /**
      * [getData description]
      * @return [type] [description]
      */

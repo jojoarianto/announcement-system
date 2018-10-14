@@ -11,13 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('region');
-});
-
-Route::get('pengumuman', 'PengumumanController@index');
-
-Route::get('get-data', [
-	'as' => 'get-data',
-	'uses' => 'PengumumanController@getData',
-]);
+Route::get('/', [ 'as' => 'index', 'uses' => 'PengumumanController@index']);
+Route::get('get-data', [ 'as' => 'get-data', 'uses' => 'PengumumanController@getData']);
